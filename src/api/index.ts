@@ -8,12 +8,23 @@ const notifyConfig: { type: 'danger'; duration: number } = {
   duration: 2500,
 };
 const uuidToken = localStorage.getItem('uuid');
-
 // 配置新建一个 axios 实例
 const service = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: 50000,
-  headers: { 'Content-Type': 'application/json', 'UUID_TOKEN': uuidToken },
+  headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+});
+service.interceptors.request.use((config) => {
+  console.log('uuidToken', uuidToken);
+  if (uuidToken) {
+    if (config.method.toUpperCase() === 'GET') {
+      config.params = { ...config.params, uuid: uuidToken };
+    } else {
+      config.data = { ...config.data, uuid: uuidToken };
+    }
+
+  }
+  return config;
 });
 
 service.interceptors.response.use(
