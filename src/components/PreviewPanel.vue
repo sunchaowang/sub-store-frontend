@@ -2,7 +2,7 @@
   <ul class="preview-list">
     <li v-for="platform in platformList" :key="platform.name">
       <a
-        :href="`${host}/download/${
+        :href="`${host}/api/download/${
           type === 'sub' ? '' : 'collection/'
         }${name}?target=${platform.path}`"
         target="_blank"
