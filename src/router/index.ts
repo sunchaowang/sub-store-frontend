@@ -15,7 +15,7 @@ import themeSetting from '@/views/themeSetting.vue';
 import { Toast } from '@nutui/nutui';
 import { toRaw } from 'vue';
 import 'vue-router';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
 
 let globalStore = null;
 
@@ -27,7 +27,7 @@ declare module 'vue-router' {
   }
 }
 
-const history = createWebHistory();
+const history = createWebHashHistory();
 const router = createRouter({
   history,
   routes: [
